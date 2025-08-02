@@ -1,5 +1,55 @@
 package com.zbm2.rbresolver;
+
 /* Full List of RB Content Provider attributes
+ factory Repeater.fromContentValues(ContentValues contentValues) => Repeater(
+        id: contentValues.getInt('id')!,
+        Call: contentValues.getString('Call')!,
+        Band: contentValues.getString('Band')!,
+        RX: contentValues.getDouble('RX')!,
+        TX: contentValues.getDouble('TX')!,
+        Offset: contentValues.getString('Offset')!, // Double ?
+        Services: contentValues.getInt('Services')!,
+        Access: contentValues.getInt('Access')!,
+        CTCSS: contentValues.getDouble('CTCSS')!,
+        DCS: contentValues.getInt('DCS')!,
+        IRLP_node: contentValues.getString('IRLP_node')!, //Dynamic
+        ECHOLINK_node: contentValues.getString('ECHOLINK_node')!, //Dynamic
+        DStar_node: contentValues.getString('DStar_node')!, //Dynamic
+        AllStar_node: contentValues.getString('AllStar_node')!, //Dynamic
+        WIRES_node: contentValues.getString('WIRES_node')!, //Dynamic
+        EmergencyNet: contentValues.getInt('EmergencyNet')!,
+        Location: contentValues.getString('Location')!,
+        County: contentValues.getString('County')!,
+        State: contentValues.getString('State')!,
+        Province: contentValues.getString('Province')!,
+        Lat: contentValues.getDouble('Lat')!,
+        Lng: contentValues.getDouble('Lng')!,
+        Country: contentValues.getString('Country')!,
+        URL: contentValues.getString('URL')!,
+        NotesFeatures: contentValues.getString('NotesFeatures')!,
+        NotesAccess: contentValues.getString('NotesAccess')!,
+        Updated: contentValues.getString('Updated')!,
+        By: contentValues.getString('By')!,
+        RBID: contentValues.getString('RBID')!,
+        OpStatus: contentValues.getInt('OpStatus')!,
+        DMR_Text: contentValues.getString('DMR_Text')!,
+        NAC: contentValues.getString('NAC')!,
+        NotesLinks: contentValues.getString('NotesLinks')!,
+        DTMF: contentValues.getString('DTMF')!,
+        Region: contentValues.getString('Region')!,
+        ASL: contentValues.getString('ASL')!,
+        Power: contentValues.getString('Power')!,
+        DMRID: contentValues.getString('DMRID')!,
+        DMRNetwork: contentValues.getString('DMRNetwork')!,
+        M17CAN: contentValues.getInt('M17CAN')!,
+        Distance: contentValues.getDouble('Distance')!,
+        CompassHeading: contentValues.getString('CompassHeading')!,
+        Bearing: contentValues.getDouble('Bearing')!,
+        BearingSort: contentValues.getString('BearingSort')!,
+        ServiceTxt: contentValues.getString('ServiceTxt')!,
+        BandSort: contentValues.getInt('BandSort')!,
+      );
+
  int id;
   String Call;
   String Band;
