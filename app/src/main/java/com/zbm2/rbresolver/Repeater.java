@@ -1,4 +1,55 @@
 package com.zbm2.rbresolver;
+/* Full List of RB Content Provider attributes
+ int id;
+  String Call;
+  String Band;
+  double RX;
+  double TX;
+  String Offset;
+  int Services;
+  int Access;
+  double CTCSS;
+  int DCS;
+  dynamic IRLP_node;
+  dynamic ECHOLINK_node;
+  dynamic DStar_node;
+  dynamic AllStar_node;
+  dynamic WIRES_node;
+  int EmergencyNet;
+  String Location;
+  String County;
+  String State;
+  String Province;
+  double Lat;
+  double Lng;
+  String Country;
+  String URL;
+  String NotesFeatures;
+  String NotesAccess;
+  String Updated;
+  String By;
+  String RBID;
+  int OpStatus;
+  String DMR_Text;
+  String NAC;
+  String NotesLinks;
+  String DTMF;
+  String Region;
+  String ASL;
+  String Power;
+  String DMRID;
+  String DMRNetwork;
+  int M17CAN;
+
+  // String Notes;
+  double Distance;
+  String CompassHeading;
+  double Bearing;
+  String BearingSort;
+  String ServiceTxt;
+  int BandSort;
+ */
+
 public class Repeater {
     private final long id;
     private final String call;
