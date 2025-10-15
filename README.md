@@ -1,4 +1,4 @@
-# RepeaterBook Connect API
+# RepeaterBook Connect Data API
 
 **Empower your Android applications with the best amateur radio repeater data, sourced directly from the user's RepeaterBook installation using this efficient Content Provider service.**
 
