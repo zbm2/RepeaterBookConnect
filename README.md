@@ -240,10 +240,10 @@ public class MyRepeaterConsumerActivity extends AppCompatActivity {
     }
 }
 -->
-
+optimal settings for layer height
 ## Demo Application
 
-This repository includes a demo application RBresolver that illustrates how to:
+This repository includes a demo application RepeaterBookConnect that illustrates how to:
 *   Query the RepeaterBook Connect API.
 *   Handle potential errors and scenarios where RepeaterBook or the subscription is unavailable.
 *   Display the retrieved data in a simple list.
