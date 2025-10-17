@@ -1,4 +1,4 @@
-# RepeaterBook Connect API
+# RepeaterBook Connect Data API
 
 **Empower your Android applications with the best amateur radio repeater data, sourced directly from the user's RepeaterBook installation using this efficient Content Provider service.**
 
@@ -80,7 +80,7 @@ The RepeaterBook Connect API is implemented as an Android `ContentProvider`. You
     *   `DMRNetwork` (String): DMR Network affiliation.
     *   `M17CAN` (int): M17 Community Access Number.
 
-    *(Note: For columns like `IRLP_node`, `ECHOLINK_node`, etc., marked as "String/dynamic", the exact data type retrieved from the cursor might vary if they can sometimes be numbers or strings. Always query and handle data types robustly. Check `Repeater.fromContentValues` implementation for definitive types from `ContentValues`.)*
+    *Note: For columns like `IRLP_node`, `ECHOLINK_node`, etc., marked as "String/dynamic", the exact data type retrieved from the cursor might vary if they can sometimes be numbers or strings. Always query and handle data types robustly. Check `Repeater.fromContentValues` implementation for definitive types from `ContentValues`*
 
 *   **Query Parameters:**
     *   `projection` (String[]): Specify which columns you need. `null` for all available columns.
@@ -240,10 +240,10 @@ public class MyRepeaterConsumerActivity extends AppCompatActivity {
     }
 }
 -->
-
+optimal settings for layer height
 ## Demo Application
 
-This repository includes a demo application RBresolver that illustrates how to:
+This repository includes a demo application RepeaterBookConnect that illustrates how to:
 *   Query the RepeaterBook Connect API.
 *   Handle potential errors and scenarios where RepeaterBook or the subscription is unavailable.
 *   Display the retrieved data in a simple list.
