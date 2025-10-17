@@ -135,7 +135,6 @@ This declaration is necessary for your application to discover and interact with
 ## Example Usage (Java)
 
 ```java
-...
    private void loadData() {
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);License
@@ -154,7 +153,6 @@ This declaration is necessary for your application to discover and interact with
             Toast.makeText(this, "Error loading data: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-...
 ```
 <!--
 import android.database.Cursor;
@@ -240,10 +238,9 @@ public class MyRepeaterConsumerActivity extends AppCompatActivity {
     }
 }
 -->
-optimal settings for layer height
 ## Demo Application
 
-This repository includes a demo application RepeaterBookConnect that illustrates how to:
+This repository includes a demo application RBResolver that illustrates how to:
 *   Query the RepeaterBook Connect API.
 *   Handle potential errors and scenarios where RepeaterBook or the subscription is unavailable.
 *   Display the retrieved data in a simple list.

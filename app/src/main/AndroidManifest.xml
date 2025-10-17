@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
-        <package android:name="com.zbm2.repeaterbook"/>
+        <package android:name="com.zbm2.rbresolver"/>
     </queries>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
