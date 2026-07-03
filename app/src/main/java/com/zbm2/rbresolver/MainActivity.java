@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +26,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationTokenSource;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ActionBar title
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("RepeaterBook Connect Demo");
+        actionBar.setTitle("RepeaterBook Connect Data Demo");
 
         // Initialize SwipeRefreshLayout
         SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             swipeRefreshLayout.setRefreshing(false);
         });
         loadData();
+        Log.d("DEBUG", "Loading nearby repeaters...");
     }
 
     private void loadData() {
@@ -59,13 +62,17 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 51.8234, -0.3798
+        // Set up the selection arguments
+        // The current Lat and Long are not available to the Content Provider, you need to supply them.
+        //
+        // Either supply Lat and Long, 51.8234, -0.3798 for example
+        // Or Null to use RepeaterBook's last - Manually - searched for location
+
         String[] selectionArgs = {String.valueOf(latitude), String.valueOf(longitude)};
 
         // Get the Cursor from the Content Provider
         try {
             Cursor cursor = getContentResolver().query(CONTENT_URI, null, null, selectionArgs, null);
-
             itemAdapter = new RepeaterCursorAdapter(this, cursor);
             recyclerView.setAdapter(itemAdapter);
         } catch (Exception e) {
@@ -101,25 +108,16 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cancellationTokenSource.getToken())
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            // Use the location
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                            loadData();
-                        } else {
-                            showErrorSnackbar("Failed to find your GPS location (it came back null).");
-                        }
+        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cancellationTokenSource.getToken()).addOnSuccessListener(location -> {
+                    if (location != null) {
+                        // Use the location
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                        loadData();
+                    } else {
+                        showErrorSnackbar("Failed to find your GPS location (it came back null).");
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showErrorSnackbar("Failed to find your GPS location.");
-                    }
-                });
+                }).addOnFailureListener(e -> showErrorSnackbar("Failed to find your GPS location."));
     }
 
     // Android permission stuff
@@ -135,14 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setTitle("Permission needed")
                         .setMessage("This app needs the fine location permission")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                        REQUEST_LOCATION_PERMISSION_CODE);
-                            }
-                        })
+                        .setPositiveButton("OK", (dialogInterface, i) -> ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                REQUEST_LOCATION_PERMISSION_CODE))
                         .create()
                         .show();
 
@@ -172,8 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("DEBUG", "Warning: Need fine location permission to find nearby repeaters, but user denied it.");
                     showErrorSnackbar("Can't get your GPS location because the permission was denied.");
                 }
-                return;
-            }
+           }
         }
     }
 

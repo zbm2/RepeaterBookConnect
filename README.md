@@ -85,7 +85,7 @@ The RepeaterBook Connect API is implemented as an Android `ContentProvider`. You
 *   **Query Parameters:**
     *   `projection` (String[]): Specify which columns you need. `null` for all available columns.
     *   `selection` (String): Typically `null`. The selection logic (filtering, sorting, location proximity) is primarily handled by the settings within the RepeaterBook app itself.
-    *   `selectionArgs` (String[]): Your app can provide `latitude` (as `String`) and `longitude` (as `String`) in this array if you wish to query for repeaters around a *specific* location, overriding the RepeaterBook app's current location focus for that query. If `null` or empty, it uses RepeaterBook's current context.
+    *   `selectionArgs` (String[]): Your app must provide `latitude` (as `String`) and `longitude` (as `String`) in this array to query for repeaters around a *specific* location. If `null` or empty, RepeaterBook's last - Manually - searched for location is used, if available. 
         *   Example: `String[] selectionArgs = { "51.8234", "-0.3798" };`
     *   `sortOrder` (String): Typically `null`. The sort order is determined by the user's settings in the RepeaterBook app.
 
@@ -241,7 +241,7 @@ public class MyRepeaterConsumerActivity extends AppCompatActivity {
 ## Demo Application
 
 This repository includes a demo application RBResolver that illustrates how to:
-*   Query the RepeaterBook Connect API.
+*   Query the RepeaterBook Connect Data API.
 *   Handle potential errors and scenarios where RepeaterBook or the subscription is unavailable.
 *   Display the retrieved data in a simple list.
 
@@ -258,9 +258,9 @@ The demo application code in this repository is licensed under the MIT License. 
 <!--
 * Access the latest RepeaterBook data from your own app.
 * No complex repeater selection UI to write, by default the current RepeaterBook selection and sorting are returned.
-* Repeater selection and sorting managed by the familar RepeaterBook app.
+* Repeater selection and sorting managed by the familiar RepeaterBook app.
 * RepeaterBook does not have to be running, just installed.
-* High performance. Results returned directly from the RepaterBook app.
+* High performance. Results returned directly from the RepeaterBook app.
 * No internet connection required. No network delays or bandwidth issues.
 * Uses standard Android Content Provider / Content Resolver services.
 -->
