@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.zbm2.rbresolver"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -25,7 +25,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -35,7 +35,6 @@ android {
 
 dependencies {
     implementation(libs.recyclerview)
-    implementation(libs.appcompat.v161)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
